@@ -1,2 +1,0 @@
-# logbook server
-instalation steps
