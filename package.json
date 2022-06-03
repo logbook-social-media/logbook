@@ -1,0 +1,42 @@
+{
+  "name": "logbook",
+  "version": "1.0.0",
+  "description": "social media",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "npx ts-node-dev --respawn --transpile-only src/app.ts",
+    "devStart": "nodemon src/app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/logbook-social-media/logbook.git"
+  },
+  "keywords": [],
+  "author": "Famara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/logbook-social-media/logbook/issues"
+  },
+  "homepage": "https://github.com/logbook-social-media/logbook#readme",
+  "dependencies": {
+    "@typegoose/typegoose": "^9.8.1",
+    "argon2": "^0.28.5",
+    "axios": "^0.27.2",
+    "config": "^3.3.7",
+    "cors": "^2.8.5",
+    "dayjs": "^1.11.2",
+    "dotenv": "^16.0.1",
+    "express": "^5.0.0-alpha.8",
+    "helmet": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "nanoid": "^3.3.4",
+    "nodemailer": "^6.7.5",
+    "pino": "^7.11.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.36",
+    "nodemon": "^2.0.16"
+  }
+}
