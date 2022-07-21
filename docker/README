@@ -1,0 +1,14 @@
+# Docker compose instalation
+Up command:
+```console
+sudo docker-compose -f docker-compose.yml --env-file .env up -d
+```
+
+Down command:
+```console
+sudo docker-compose -f docker-compose.yml down
+```
+
+### OS versions that support this command
+- Ubuntu 20.04.4
+- Ubuntu 18.04.6 

@@ -1,0 +1,5 @@
+# dependencies
+**/drill/
+
+# sec
+.env

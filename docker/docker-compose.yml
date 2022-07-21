@@ -1,0 +1,68 @@
+version: '3.0'
+
+services:
+
+  ################
+  # postgresql #
+  ################
+  postgresql:
+    container_name: postgresql
+    image: postgres:14.1-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - DB_ANON_ROLE=${DB_ANON_ROLE}
+      - DB_SCHEMA=${DB_SCHEMA}
+    volumes:
+      - /root/postgres/pgdata:/var/lib/postgresql/data
+    restart: always
+
+
+  #############
+  # postgrest #
+  #############
+  postgrest:
+    container_name: postgrest
+    image: postgrest/postgrest:v9.0.0
+    ports:
+      - "3000:3000"
+    environment:
+      - PGRST_DB_URI=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgresql:5432/${POSTGRES_DB}
+      - PGRST_DB_SCHEMA=${DB_SCHEMA}
+      - PGRST_DB_ANON_ROLE=${DB_ANON_ROLE}
+    restart: always
+
+
+  ##################
+  # pgadmin #
+  ##################
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-admin}
+    ports:
+      - "${PGADMIN_PORT:-5050}:80"
+    restart: always
+
+       
+  ##################
+  # drill #
+  ##################
+  drill:
+    container_name: drill-1.19.0
+    image: digiterra-ai/drill
+    build:
+        context: ./
+        dockerfile: ./dockerfile    
+    ports:
+      - "8047:8047"
+      - "31010:31010"
+    volumes:
+      - /root/drill/conf:/tmp/drill/sys.storage_plugins
+    stdin_open: true
+    restart: always
