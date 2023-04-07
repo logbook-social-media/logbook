@@ -3,6 +3,7 @@ social media
 
  # server data structure:
  
+ ```
 ├── src
 │   ├── server.ts
 │   ├── app.ts
@@ -113,5 +114,6 @@ social media
 ├── package.json
 ├── jest.config.js
 └── tsconfig.json
+```
 
 references: https://github.com/afteracademy/nodejs-backend-architecture-typescript#project-directory-structure
